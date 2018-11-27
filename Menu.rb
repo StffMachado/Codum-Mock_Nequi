@@ -5,6 +5,8 @@ class Menu
     @options = options
   end
 
+
+
   def ask
     while true
       show
