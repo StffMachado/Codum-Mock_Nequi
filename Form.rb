@@ -14,24 +14,17 @@ class Form
 
     data = {}
     @fields.each do |name, type|
-      loop do
-        print name + ": "
-        datum = gets.chomp
 
-
-        data[name] = DataChecker.convert(datum, name, type)
-        while data[name] == false do
+        validate = false
+        while validate == false do
           print name + ": "
           datum = gets.chomp
-          data[name] = DataChecker.convert(datum, name, type)
+          validate = DataChecker.convert(datum, name, type)
         end
+        data[name] = datum
 
-        puts ''
-        break unless data[name].nil?
-        puts 'Dato no válido.'
-      end
     end
-    puts "#{data}"
+  data
   end
 
 end
