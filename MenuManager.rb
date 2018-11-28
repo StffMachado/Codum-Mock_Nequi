@@ -22,7 +22,7 @@ class MenuManager
       2. Registrar nuevo usuario
       3. Salir
       "
-    
+
 
       n = gets.chomp.to_i
       case n
@@ -34,7 +34,10 @@ class MenuManager
       when 2
         data = {'username' => :string, 'name' => :string, 'e-mail' => :email, 'password' => :string}
         form = Form.new('Registro', data)
+        response = {}
         response = form.ask(:username)
+        insert = ControllerUser.new()
+        insertuser = insert.insertuser(response)
 
       when 3
         puts 'Gracias por visitarnos'

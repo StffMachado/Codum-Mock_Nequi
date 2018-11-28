@@ -1,20 +1,29 @@
+
+require_relative 'ControllerUser'
+
 class DataChecker
 
   def self.convert(datum, name, type)
     #There should be a case statement that invokes the corresponding checker for
     #each type and converts datum. For now, it just outputs the datum as it is.
-
-    if name == 'username'
-      validate_string = /^(\w+)$/
+   if datum.length == 0 && name == 'username'
+     puts "Ingrese un valor "
+     return false
+   elsif datum.length > 0 && name == 'username'
+      validate_string = /^(\S+)$/
       m = validate_string.match(datum)
       unless m
-      puts "Digite un nombre de usuario valido"
+      puts "Digite un nombre valido. no puede contener espacios en blanco #{datum} y #{name}"
       return false
-      end
+      else
       return true
+      end
     end
 
-    if name == 'name'
+    if datum.length == 0 && name == 'name'
+      puts "Ingrese un valor "
+      return false
+    elsif datum.length > 0 && name == 'name'
       validate_string = /^(\D+)$/
       m = validate_string.match(datum)
       unless m
@@ -22,12 +31,13 @@ class DataChecker
       return false
     else
       return true
-
       end
-
     end
 
-    if name == 'e-mail'
+    if datum.length == 0 && name == 'e-mail'
+      puts "Ingrese un valor "
+      return false
+    elsif datum.length > 0 && name == 'e-mail'
       validate_string = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
       m = validate_string.match(datum)
       unless m
@@ -35,11 +45,13 @@ class DataChecker
       return false
     else
       return true
-
       end
     end
 
-    if name == 'password'
+    if datum.length == 0 && name == 'password'
+      puts "Ingrese un valor "
+      return false
+    elsif datum.length > 0 && name == 'password'
       validate_string = /^(\w+)$/
       m = validate_string.match(datum)
       unless m
@@ -51,18 +63,5 @@ class DataChecker
       end
     end
 
-    #num_expres = /\s(\d+)\s(\d+)\b/
-    #n = num_expres.match(@command.to_s)
-    #datum
-    #validate = true
-
-    #while validate = false do
-    #  print name + ": "
-    #  datum = gets.chomp
-    #end
-
-    #puts "#{datum} y #{type} y #{name}"
-    #return true
-    #datum
   end
 end
