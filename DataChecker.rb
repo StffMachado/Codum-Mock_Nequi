@@ -13,7 +13,7 @@ class DataChecker
       validate_string = /^(\S+)$/
       m = validate_string.match(datum)
       unless m
-      puts "Digite un nombre valido. no puede contener espacios en blanco #{datum} y #{name}"
+      puts "Digite un nombre valido, no incluir espacios en blanco"
       return false
       else
       return true
