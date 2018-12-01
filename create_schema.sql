@@ -4,7 +4,7 @@ CREATE TABLE `users` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(325) NOT NULL UNIQUE,
-  `password` varbinary(100) NOT NULL,
+  `password` varchar(256) NOT NULL,
   `active` bit(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT NOW(),
   `updated_at` timestamp NOT NULL DEFAULT NOW() ON UPDATE NOW(),
