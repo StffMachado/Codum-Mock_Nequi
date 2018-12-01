@@ -5,8 +5,6 @@ class Menu
     @options = options
   end
 
-
-
   def ask
     while true
       show
@@ -19,7 +17,7 @@ private
 
   def show
     system "clear" or system "cls"
-    puts "\n\n"<<('*'*80)<<"\n"<<'* '<<@title.center(76)<<' *'<<"\n"<<('*'*80)
+    puts "\n"<<('*'*80)<<"\n"<<'* '<<@title.center(76)<<' *'<<"\n"<<('*'*80)
     k= 1
     @options.each do |opt|
       puts "#{k}.\t#{opt}"

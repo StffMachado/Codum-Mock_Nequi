@@ -1,4 +1,4 @@
-require_relative 'DataChecker'
+require_relative 'UserInputChecker'
 
 class Form
 
@@ -8,23 +8,21 @@ class Form
     @fields = fields
   end
 
-  def ask(name)
+  def ask
     system "clear" or system "cls"
-    puts "\n\n"<<('*'*80)<<"\n"<<'* '<<@title.center(76)<<' *'<<"\n"<<('*'*80)
-
+    puts "\n"<<('*'*80)<<"\n"<<'* '<<@title.center(76)<<' *'<<"\n"<<('*'*80)
     data = {}
     @fields.each do |name, type|
-
-        validate = false
-        while validate == false do
-          print name + ": "
-          datum = gets.chomp
-          validate = DataChecker.convert(datum, name, type)
-        end
-        data[name] = datum
-
+      loop do
+        print name + ": "
+        datum = gets.chomp
+        data[name] = UserInputChecker.convert(datum, type)
+        puts ''
+        break unless data[name].nil?
+        puts 'Dato no válido.'
+      end
     end
-  data
+    data
   end
 
 end

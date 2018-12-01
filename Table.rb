@@ -13,7 +13,7 @@ class Table
     table_width = col_width.sum + col_width.length + 1
     puts "\n"<<('-'*table_width)<<"\n"<<'|'<<@title.center(table_width-2)<<'|'<<"\n"<<('='*table_width)
     for i in 0..fields.length-1 do
-      print '|'<<fields[i].center(col_width[i])
+      print '|'<<fields[i].to_s.center(col_width[i])
     end
     puts '|'<<"\n"<<('='*table_width)
   @data.each do |entry|
@@ -41,7 +41,7 @@ private
     fields.each do |field|
       col_w = field.length
       data.each do |entry|
-        col_w = [col_w, entry[field].length].max unless entry[field].nil?
+        col_w = [col_w, entry[field].to_s.length].max unless entry[field].nil?
       end
       col_width << col_w + 4
     end

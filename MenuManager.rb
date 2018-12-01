@@ -1,51 +1,19 @@
 require_relative 'Menu'
-require_relative 'Form'
+require_relative 'Session'
 
 class MenuManager
 
-  def initialize
-    @menus = {}
-    @menus[:login] = Menu.new('Mock Nequi', ['Iniciar sesión','Registrar nuevo usuario', 'Salir'])
-    @menus[:account] = Menu.new('Cuenta de Ahorros', ['Consultar saldo disponible','Consultar saldo total', '...'])
-
+  def self.create_menus
+    @@menus = {}
+    @@menus[:entry] = Menu.new('Mock Nequi', ['Iniciar sesión','Registrar nuevo usuario', 'Salir'])
+    @@menus[:main] = Menu.new('Menu principal', ['Administrar Cuenta','Administrar Colchón','Administrar Bolsillos','Administrar Metas','Últimas transferencias','Cerrar sesión'])
+    @@menus[:account] = Menu.new('Cuenta', ['Consultar el saldo disponible','Consultar el saldo total','Hacer un depósito','Hacer un retiro','Hacer una transferencia','Atrás'])
+    @@menus[:mattress] = Menu.new('Colchón', ['Consultar el saldo','Traer dinero de la cuenta','Mover dinero a la cuenta','Atrás'])
+    @@menus[:pocket] = Menu.new('Bolsillos', ['Listar los bolsillos','Crear nuevo bolsillo','Eliminar bolsillo','Traer dinero desde la cuenta','Mover dinero a la cuenta','Hacer una transferencia','Atrás'])
+    @@menus[:goal] = Menu.new('Metas', ['Listar metas','Crear meta','Cerrar meta','Traer dinero desde la cuenta','Atrás'])
   end
 
-  def menu(menu_name)
-    return @menus[menu_name]
-
+  def self.menu(menu_name)
+    return @@menus[menu_name]
   end
-
-  def menu_principal
-    puts "-------------------------Bienvenido a Mock Nequi------------------------- \n
-      (Indique el numero de la opción deseada para comenzar): \n
-      1. Iniciar Sesion
-      2. Registrar nuevo usuario
-      3. Salir
-      "
-
-
-      n = gets.chomp.to_i
-      case n
-      when 1
-         puts 'Opcion 1'
-          #get_numbers do |x,y|
-          #puts "Sum: #{sum(x,y)}"
-          #end
-      when 2
-        data = {'username' => :string, 'name' => :string, 'e-mail' => :email, 'password' => :string}
-        form = Form.new('Registro', data)
-        response = {}
-        response = form.ask(:username)
-        insert = ControllerUser.new()
-        insertuser = insert.insertuser(response)
-
-      when 3
-        puts 'Gracias por visitarnos'
-      else
-        puts "Solo indique numeros (1, 2 o 3)"
-        self.menu_principal()
-
-  end
-end
-
 end
