@@ -25,8 +25,8 @@ class ControllerUser
       pst.execute user, name, email, password
 
       rescue Mysql2::Error => e
-        puts e.errno
-        puts e.error
+        #puts e.errno
+        #puts e.error
       ensure
         @client.close if @client
         pst.close if pst
