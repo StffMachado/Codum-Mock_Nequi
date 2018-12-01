@@ -4,7 +4,7 @@ CREATE TABLE `users` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(325) NOT NULL UNIQUE,
-  `password` varbinary(40) NOT NULL,
+  `password` varbinary(100) NOT NULL,
   `active` bit(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT NOW(),
   `updated_at` timestamp NOT NULL DEFAULT NOW() ON UPDATE NOW(),
@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `mattresses`;
 CREATE TABLE `mattresses` (
   `mattress_id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL UNIQUE,
+  `name` varchar(100) NOT NULL,
   `balance` decimal(15,2) NOT NULL DEFAULT 0.00,
   `created_at` timestamp NOT NULL DEFAULT NOW(),
   `updated_at` timestamp NOT NULL DEFAULT NOW() ON UPDATE NOW(),
