@@ -19,15 +19,20 @@ class PocketMenuController
       else
         Error.alert(Transfer.transfer(Session.user.get_fund(FundType.type(:account)), pocket, 'Depósito a bolsillo') ? 'Transacción exitosa.' : 'Error durante la transacción.')
       end
-
-      #Transfer.transfer(Session.user.get_fund(FundType.type(:account)), Session.user.get_fund(FundType.type(:pocket), Form.new('Bolsillo', {'Nombre': :string}).ask['Nombre']), 'Agregar a bolsillo')
-      #Falta tomar el valor retornado por transfer y dar un mensaje de éxito/fallo
     when 5
-      #Transfer.transfer(Session.user.get_fund(FundType.type(:pocket), Form.new('Bolsillo', {'Nombre': :string}).ask['Nombre']), Session.user.get_fund(FundType.type(:account)), 'Retirar de bolsillo')
-      #Falta tomar el valor retornado por transfer y dar un mensaje de éxito/fallo
+      pocket = Session.user.get_fund(FundType.type(:pocket), Form.new('Seleccionar bolsillo', {'Nombre' => :string}).ask['Nombre'])
+      if pocket.nil?
+        Error.alert('El bolsillo no existe.')
+      else
+        Error.alert(Transfer.transfer(pocket, Session.user.get_fund(FundType.type(:account)), 'Retiro de bolsillo') ? 'Transacción exitosa.' : 'Error durante la transacción.')
+      end
     when 6
-      #Transfer.inter_user_transfer(Session.user.get_fund(FundType.type(:pocket), Form.new('Bolsillo', {'Nombre': :string}).ask['Nombre']), 'Transferencia a otro usuario')
-      #Falta tomar el valor retornado por transfer y dar un mensaje de éxito/fallo    end
+      pocket = Session.user.get_fund(FundType.type(:pocket), Form.new('Seleccionar bolsillo', {'Nombre' => :string}).ask['Nombre'])
+      if pocket.nil?
+        Error.alert('El bolsillo no existe.')
+      else
+        Error.alert(Transfer.inter_user_transfer(pocket, 'Transferencia a otro usuario') ? 'Transacción exitosa.' : 'Error durante la transacción.')
+      end
     when 7
       MainMenuController.start
     end
