@@ -18,7 +18,8 @@ class Table
     puts '|'<<"\n"<<('='*table_width)
   @data.each do |entry|
       for i in 0..fields.length-1 do
-        print '|'<<entry[fields[i]].to_s.center(col_width[i])
+        text = (entry[fields[i]].is_a? Numeric) ? "%.2f" % [entry[fields[i]]] : entry[fields[i]].to_s
+        print '|'<<text.center(col_width[i])
       end
       puts '|'<<"\n"<<('-'*table_width)
     end
