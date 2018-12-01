@@ -10,7 +10,7 @@ class PocketMenuController
       Balance.show_balance(Session.user.funds_of_type(FundType.type(:pocket)))
     when 2
       Error.alert(Session.user.open_fund(Form.new('Nuevo bolsillo', {'Nombre' => :string}).ask['Nombre'], FundType.type(:pocket)) ? 'Bolsillo creado exitosamente.' : 'El bolsillo ya existe.')
-  when 3
+    when 3
       Error.alert(Session.user.close_fund(Form.new('Eliminar bolsillo', {'Nombre' => :string}).ask['Nombre'], FundType.type(:pocket)) ? 'Bolsillo eliminado.' : 'El bolsillo no existe.')
     when 4
       pocket = Session.user.get_fund(FundType.type(:pocket), Form.new('Seleccionar bolsillo', {'Nombre' => :string}).ask['Nombre'])

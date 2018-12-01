@@ -29,7 +29,7 @@ class FundType
   end
 
   def ==(another_fund_type)
-      @db_table == another_another_fund_type.db_table
+      @db_table == another_fund_type.db_table
   end
 
 end
